@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form action="">
+        <input type="file" name="file" id="file">
+        <input type="submit" placeholder="Submit" id="btn">
+    </form>
+
+</body>
+
+<script>
+
+
+    let fileInput = document.getElementById("file");
+
+    let btn = document.getElementById("btn");
+
+    let fileInputValue;
+
+
+    fileInput.addEventListener('change', (event) => {
+        fileInputValue = event.target.files[0];
+
+    })
+
+    btn.addEventListener("click", async (e) => {
+        e.preventDefault()
+        let formData = new FormData();
+        console.log(fileInputValue)
+
+        formData.append("file", fileInputValue)
+
+        console.log(formData);
+
+        try {
+            let response = await fetch('http://localhost:8080/uploads', {
+                method: "POST",
+                mode: "cors",
+                body: formData,
+                headers: {
+                    "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NThkNjdkYmE5NGJiYjkyZDcyMWYxNjAiLCJ1c2VybmFtZSI6IlBhbmthaiBUaGFwbGl5YWwiLCJpYXQiOjE3MDM3NjYwMTJ9.SM5RXdSTaAcuM72dBH_-BxS_o5f68oRNAGbChirgDbg"
+                }
+            })
+            if (response.ok) {
+                response = await response.json();
+                console.log(response)
+            } else {
+                response = await response.json();
+                console.error(response)
+            }
+
+        } catch (error) {
+            console.error("Error", error)
+        }
+    })
+
+
+    const fetchData = async () => {
+        try {
+            let response = await fetch('http://localhost:8080/allfiles', {
+                method: "GET",
+                mode: "cors",
+                headers: {
+                    "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NThkNjdkYmE5NGJiYjkyZDcyMWYxNjAiLCJ1c2VybmFtZSI6IlBhbmthaiBUaGFwbGl5YWwiLCJpYXQiOjE3MDM3NjYwMTJ9.SM5RXdSTaAcuM72dBH_-BxS_o5f68oRNAGbChirgDbg"
+                }
+            })
+            if (response.ok) {
+                response = await response.json();
+                console.log(response)
+            } else {
+                response = await response.json();
+                console.error(response)
+            }
+
+        } catch (error) {
+            console.error("Error", error)
+        }
+    }
+
+    fetchData()
+
+</script>
+
+</html>
