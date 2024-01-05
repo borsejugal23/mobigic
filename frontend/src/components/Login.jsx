@@ -22,8 +22,9 @@ import { useToast } from '@chakra-ui/react';
 
     const login = async (e) => {
       // e.preventDefault();
+      console.log("hii")
       try {
-        const res = await fetch("https://mobigic-83ah.onrender.com/users/login", {
+        const res = await fetch("http://localhost:8080/users/login", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -33,6 +34,7 @@ import { useToast } from '@chakra-ui/react';
         console.log(res)
         const data = await res.json();
        if (res.status===200){
+        localStorage.setItem('token', JSON.stringify(data.token));
         toast({
           position:"top",
           title: `${data.msg}`,

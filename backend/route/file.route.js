@@ -61,7 +61,7 @@ fileRouter.post("/uploads", authenticateToken, upload.single('file'), async (req
     // Save the file information to the database
     await file.save();
 
-    res.send('File uploaded successfully!');
+    res.status(200).json({msg:'File uploaded successfully!'});
 
 })
 

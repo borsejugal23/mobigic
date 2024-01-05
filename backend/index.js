@@ -6,13 +6,12 @@ const path = require('path');
 const { connection } = require("./db");
 
 const { userRouter } = require("./route/user.route");
-const { fileRouter } = require("./route/file.route")
 
 
 const app = express();
 require("dotenv").config()
 const cors = require("cors");
-const { fileRoute } = require("./route/file.route");
+const { fileRouter } = require("./route/file.route");
 app.use(cors())
 
 app.use(express.json());

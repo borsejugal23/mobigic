@@ -10,11 +10,17 @@ export const Navbar = () => {
       boxShadow="md"
       bg="white" 
     >
+       <Link as={RouterLink} to="/file">
+        <Text fontSize="xl" fontWeight="bold" color="blue.500" textDecoration="none">
+          Document
+        </Text>
+      </Link>
       <Link as={RouterLink} to="/">
         <Text fontSize="xl" fontWeight="bold" color="blue.500" textDecoration="none">
           Register
         </Text>
       </Link>
+
       <Link as={RouterLink} to="/login">
         <Text fontSize="xl" fontWeight="bold" color="blue.500" textDecoration="none">
           Login
